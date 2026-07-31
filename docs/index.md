@@ -1,6 +1,7 @@
 # Wheel Spin Points Game
 
-This is a wheel-spinning game with points values and bonuses including multipliers and double points.
+This is a wheel-spinning game with points values and bonuses including
+multipliers and double points.
 
 ### Getting Started
 
