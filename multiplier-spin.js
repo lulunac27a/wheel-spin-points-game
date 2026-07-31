@@ -61,14 +61,14 @@ function runSession(startingSpins = 1) {
       totalPoints += gained;
       currentMultiplier = 1;
       doubleFlag = false;
-    } else if (landing === 'DOUBLE_POINTS') {
+    } else if (landing === "DOUBLE_POINTS") {
       spinsLeft += 1;
       doubleFlag = true;
-    } else if (landing === 'MULTIPLIER_BONUS') {
+    } else if (landing === "MULTIPLIER_BONUS") {
       currentMultiplier = 5;
-    } else if (landing === 'FREE_SPINS') {
+    } else if (landing === "FREE_SPINS") {
       spinsLeft += 2;
-    } else if (landing === 'NO_POINTS') {
+    } else if (landing === "NO_POINTS") {
       currentMultiplier = 1;
       doubleFlag = false;
     }
@@ -78,10 +78,16 @@ function runSession(startingSpins = 1) {
 }
 
 function runSimulation(simulations = 100000) {
-  const payoutAccumulator = Array.from({ length: simulations }, () => runSession()).reduce((sum, value) => sum + value, 0);
+  const payoutAccumulator = Array.from({ length: simulations }, () =>
+    runSession(),
+  ).reduce((sum, value) => sum + value, 0);
 
-  console.log(`Validated across ${simulations.toLocaleString()} standard games...`);
-  console.log(`📊 Balanced Expected Return: ${(payoutAccumulator / simulations).toFixed(2)} points per session.`);
+  console.log(
+    `Validated across ${simulations.toLocaleString()} standard games...`,
+  );
+  console.log(
+    `📊 Balanced Expected Return: ${(payoutAccumulator / simulations).toFixed(2)} points per session.`,
+  );
 }
 
 if (require.main === module) {
