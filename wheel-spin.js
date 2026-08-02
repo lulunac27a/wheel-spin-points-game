@@ -52,6 +52,20 @@ class UltimateWeightedWheel {
         );
     }
 
+    rollMultiplierBasePayout() {
+        const rareHighPayoutChance = 0.05;
+
+        if (Math.random() < rareHighPayoutChance) {
+            const highTierStartIndex = 5;
+            const highTierCount = this.pointsList.length - highTierStartIndex;
+            const randomHighTierIndex =
+                highTierStartIndex + Math.floor(Math.random() * highTierCount);
+            return this.pointsList[randomHighTierIndex];
+        }
+
+        return this.pointsList[Math.floor(Math.random() * 5)];
+    }
+
     runSpinAnimation() {
         const frames = ["◜", "◝", "◞", "◟"];
         process.stdout.write(
@@ -98,7 +112,7 @@ class UltimateWeightedWheel {
             );
         } else if (landedOutcome === "MULTIPLIER") {
             const multiplier = this.rollNestedMultiplier();
-            const basePayout = this.pointsList[0];
+            const basePayout = this.rollMultiplierBasePayout();
             const pointsWon = basePayout * multiplier;
             this.points += pointsWon;
             console.log("🚀 Outcome: Multiplier Bonus Sub-Tier triggered!");
@@ -115,6 +129,12 @@ class UltimateWeightedWheel {
         } else if (landedOutcome === "DOUBLE") {
             const oldPoints = this.points;
             this.points *= 2;
+
+            if (Math.random() < 0.5) {
+                this.freeSpins += 1;
+                console.log("🎟️ DOUBLE outcome also awarded an extra spin!");
+            }
+
             console.log(
                 `💥 JACKPOT: DOUBLE CURRENT POINTS! Score shifted from ${oldPoints.toLocaleString()} to ${this.points.toLocaleString()}!`,
             );
