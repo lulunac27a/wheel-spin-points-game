@@ -192,6 +192,7 @@ class UltimateWeightedWheel {
     }
 
     displayHud() {
+        //function to display the current points and remaining spins in a formatted manner for the user
         console.log("-".repeat(70));
         console.log(
             `📊 POINTS TOTAL: ${this.points.toLocaleString()}  |  🎟️ REMAINING SPINS: ${this.freeSpins}`,
