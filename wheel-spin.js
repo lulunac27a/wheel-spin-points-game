@@ -208,8 +208,9 @@ function runGame(startingPoints = 100, startingSpins = 5) {
     game.displayHud();
 
     while (game.freeSpins > 0) {
-        const action = "ENTER";
+        const action = "ENTER"; //prompt the user to press ENTER to spin or 'q' to quit
         if (action === "q") {
+            //if the user inputs 'q' to quit, break the loop to terminate the game
             break;
         }
         game.spin();
