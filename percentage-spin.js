@@ -6,18 +6,18 @@ class PercentageWeightedWheel {
         this.totalSpinsCast = 0;
 
         this.wheelOutcomes = ["POINTS", "PERCENTAGE", "FREE_SPINS", "DOUBLE"];
-        this.wheelWeights = [0.55, 0.20, 0.15, 0.10];
+        this.wheelWeights = [0.55, 0.2, 0.15, 0.1];
 
         this.pointsList = [
             100, 150, 200, 250, 300, 400, 500, 750, 1000, 1500, 2000, 2500,
             3000, 4000, 5000, 7500, 10000,
         ];
         this.pointsWeights = [
-            0.20, 0.16, 0.14, 0.12, 0.10, 0.08, 0.06, 0.04, 0.03, 0.02, 0.015,
+            0.2, 0.16, 0.14, 0.12, 0.1, 0.08, 0.06, 0.04, 0.03, 0.02, 0.015,
             0.01, 0.008, 0.006, 0.005, 0.004, 0.002,
         ];
 
-        this.percentageList = [0.10, 0.20, 0.25, 0.50, 0.75, 1.00];
+        this.percentageList = [0.1, 0.2, 0.25, 0.5, 0.75, 1.0];
         this.percentageWeights = [0.34, 0.26, 0.18, 0.12, 0.07, 0.03];
         this.percentageSigns = [1, -1];
         this.percentageSignWeights = [0.5, 0.5];
@@ -83,7 +83,10 @@ class PercentageWeightedWheel {
         } else if (landedOutcome === "PERCENTAGE") {
             const percentageChange = this.rollPercentageChange();
             const oldPoints = this.points;
-            this.points = Math.max(0, Math.round(this.points * (1 + percentageChange)));
+            this.points = Math.max(
+                0,
+                Math.round(this.points * (1 + percentageChange)),
+            );
             const label = `${percentageChange >= 0 ? "+" : ""}${percentageChange * 100}%`;
             console.log(
                 `Percentage Change: ${label} (${oldPoints.toLocaleString()} -> ${this.points.toLocaleString()})`,
